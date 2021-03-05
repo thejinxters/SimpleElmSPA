@@ -1,11 +1,18 @@
 module Page.SimplePage exposing (view)
 
-import Html exposing (Html)
+import Html exposing (Html, div, h1, text)
+
+
 
 -- VIEW
+
 
 view : { title : String, content : Html msg }
 view =
     { title = "Simple Page"
-    , content = Html.text "This is just a simple page"
+    , content =
+        div []
+            [ h1 [] [ text "Simple Page" ]
+            , text "This is just a simple page"
+            ]
     }

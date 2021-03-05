@@ -87,26 +87,21 @@ subscriptions _ =
 view : Model -> Browser.Document Msg
 view model =
     let
-        viewInfo = getDisplayInfo model
+        viewInfo =
+            getRouteView model
     in
     { title = viewInfo.title
     , body =
-        [ nav
-        , viewInfo.content
+        [ div [ id "layout", class "pure-g" ]
+            [ sidebarHeader
+            , div [ class "content pure-u-1 pure-u-md-3-4" ] [ viewInfo.content ]
+            ]
         ]
     }
 
 
-nav : Html Msg
-nav =
-    ul []
-        [ viewLink "/"
-        , viewLink "/simple-page"
-        ]
-
-
-getDisplayInfo : Model -> { title : String, content : Html msg }
-getDisplayInfo model =
+getRouteView : Model -> { title : String, content : Html msg }
+getRouteView model =
     case model.route of
         Route.Root ->
             Home.view
@@ -118,6 +113,27 @@ getDisplayInfo model =
             NotFound.view
 
 
-viewLink : String -> Html msg
-viewLink path =
-    li [] [ a [ href path ] [ text path ] ]
+sidebarHeader : Html Msg
+sidebarHeader =
+    div [ class "sidebar pure-u-1 pure-u-md-1-4" ]
+        [ div [ class "header" ]
+            [ h1 [ class "brand-title" ] [ text "Simple Elm Website" ]
+            , h2 [ class "brand-tagline" ] [ text "A Single Page App" ]
+            , navButtons
+            ]
+        ]
+
+
+navButtons : Html Msg
+navButtons =
+    nav [ class "nav" ]
+        [ ul [ class "nav-list" ]
+            [ navButton "Home" "/"
+            , navButton "Simple Page" "/simple-page"
+            ]
+        ]
+
+
+navButton : String -> String -> Html msg
+navButton name path =
+    li [ class "nav-item" ] [ a [ href path, class "pure-button" ] [ text name ] ]
