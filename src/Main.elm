@@ -111,7 +111,7 @@ getDisplayInfo model =
         Route.Root ->
             Home.view
 
-        Route.Page ->
+        Route.SimplePage ->
             SimplePage.view
 
         Route.NotFound ->

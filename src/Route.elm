@@ -6,7 +6,7 @@ import Url.Parser exposing (Parser, map, oneOf, parse, s, string, top)
 
 type Route
     = Root
-    | Page
+    | SimplePage
     | NotFound
 
 
@@ -14,7 +14,7 @@ routeParser : Parser (Route -> a) a
 routeParser =
     oneOf
         [ map Root top
-        , map Page (s "simple-page")
+        , map SimplePage (s "simple-page")
         ]
 
 
