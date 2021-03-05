@@ -1,0 +1,16 @@
+{
+  "name": "mine",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "scripts": {
+    "dev": "parcel src/index.html",
+    "build": "parcel build src/index.html --out-dir dist/"
+  },
+  "devDependencies": {
+    "elm": "^0.19.1-5",
+    "elm-hot": "^1.1.6",
+    "node-elm-compiler": "^5.0.5",
+    "parcel-bundler": "1.12.3"
+  }
+}
